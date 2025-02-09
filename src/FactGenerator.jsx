@@ -1,5 +1,5 @@
 import { ThreeDot, OrbitProgress  } from "react-loading-indicators"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function FactGenerator(){
 
@@ -26,24 +26,34 @@ function FactGenerator(){
         }
     }
 
+    useEffect(() => {
+        console.log("is mounted")
+        getFact()
+    }, 
+    [])
+
     return (
 
         <div>
-            <h1 className="text-white" > Fact Generator</h1>
+            <h1 className="text-white font-bold mb-10" > Fact Generator</h1>
 
-            <div className="m-5">
+            <div className="m-14">
                 
                 {loading && <OrbitProgress variant="spokes" dense color="white" size="medium" text="" textColor="" />
                 ||
 
-                <p className="fs-2 text-white fw-bolder">
+                <p className="text-2xl text-white font-bold">
                 {fact}<br/>
                 </p>}
 
             </div>
             
 
-            <button onClick={() => getFact()}>
+            <button className="font-bold bg-gray-900 p-3 rounded-xl cursor-pointer 
+             hover:outline-white hover:outline-2
+             hover:scale-105 hover:bg-gray-800
+             duration-75 ease-in"
+            onClick={() => getFact()}>
                 Generate Fact
             </button>
 
